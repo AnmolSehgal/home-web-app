@@ -1,0 +1,11 @@
+.navbar-container{
+    display: grid;
+    grid-template-columns: 25% 45% 25%;
+    column-gap: 10px;
+}
+.navbar-ul{
+    list-style: none;
+}
+.li-style{
+    text-decoration: none;
+}
