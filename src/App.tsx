@@ -1,9 +1,8 @@
-import Navbar from "./components/navbar";
-import { ReactElement, FC } from "react";
+import Navbar from "./components/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
-import Routes from "./routes/Routes";
+import Routes from "./routes/routes";
 
-const App: FC = (): ReactElement => {
+const App = () => {
   return (
     <Router>
       <Navbar />

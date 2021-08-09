@@ -1,15 +1,10 @@
-import React, {
-  FC,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  useState,
-  ReactElement,
-} from "react";
+import React, { ReactElement } from "react";
 import { Route, Switch } from "react-router-dom";
-import Link1 from "../screens/HomeScreen";
-import Link2 from "../screens/SignInScreen";
-import Link3 from "../screens/SignUpScreen";
+import Link1 from "./Home";
+import Link2 from "./SignIn";
+import Link3 from "./SignUp";
 
-const Routes: FC = (): ReactElement => {
+const Routes = (): ReactElement => {
   return (
     <Switch>
       <Route exact path="/" component={Link1}></Route>
