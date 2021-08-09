@@ -5,9 +5,9 @@ import React, {
   ReactElement,
 } from "react";
 import { Route, Switch } from "react-router-dom";
-import Link1 from "../screens/HomeScreen";
-import Link2 from "../screens/SignInScreen";
-import Link3 from "../screens/SignUpScreen";
+import Link1 from "../screens/Home";
+import Link2 from "../screens/SignIn";
+import Link3 from "../screens/SignUp";
 
 const Routes: FC = (): ReactElement => {
   return (
