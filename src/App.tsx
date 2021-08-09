@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Routes from "./routes/Routes";
+import Routes from "./routes/routes";
 
 const App = (): ReactElement => {
   return (
