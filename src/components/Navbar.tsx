@@ -10,10 +10,10 @@ const Navbar = (): ReactElement => {
         </Link>
       </li>
       <li>
-        <Link to="/link2">About</Link>
+        <Link to="/SignIn">About</Link>
       </li>
       <li>
-        <Link to="/link3"></Link>
+        <Link to="/link3">Sign In</Link>
       </li>
     </ul>
   );
