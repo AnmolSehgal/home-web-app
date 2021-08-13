@@ -1,18 +1,16 @@
 import { ConnectedRouter } from "connected-react-router";
 import { ReactElement } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./routes/Navbar";
 import Routes from "./routes";
 import history from "./store/history";
+// import { useEffect } from "react";
 
 const App = (): ReactElement => {
   return (
     <ConnectedRouter history={history}>
-      <Router>
-        <Navbar />
-        <Routes />
-      </Router>
+      <Navbar />
+      <Routes />
     </ConnectedRouter>
   );
 };

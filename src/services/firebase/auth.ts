@@ -19,3 +19,7 @@ export async function onOTPSubmit(otp: string) {
   const result = await window.confirmationResult.confirm(otp);
   return result;
 }
+
+export async function onSignOutSubmit() {
+  return await firebase.auth().signOut();
+}

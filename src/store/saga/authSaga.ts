@@ -1,7 +1,11 @@
 import { takeLatest, put } from "@redux-saga/core/effects";
 import { push } from "connected-react-router";
 
-import { onOTPSubmit, onPhoneNumberSubmit } from "../../services/firebase/auth";
+import {
+  onOTPSubmit,
+  onPhoneNumberSubmit,
+  onSignOutSubmit,
+} from "../../services/firebase/auth";
 import {
   phoneNumberAuthSuccess,
   otpAuthSuccess,
@@ -20,7 +24,7 @@ function* otpAuthRequestSaga({
     localStorage.setItem("uid", userData.user.uid);
     localStorage.setItem("phoneNumber", userData.user.phoneNumber);
     yield put(otpAuthSuccess());
-    yield put(push("/"));
+    yield put(push("/dashboard"));
   } catch (error) {
     console.log(error);
     yield put(otpAuthFailure());
@@ -38,6 +42,17 @@ function* phoneNumAuthRequestSaga({
     yield put(phoneNumberAuthFailure());
   }
 }
+function* signOutSaga() {
+  try {
+    yield onSignOutSubmit();
+    yield put(push("/SignIn"));
+    console.log("hi");
+    localStorage.removeItem("uid");
+    localStorage.removeItem("phoneNumber");
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 const authSaga = [
   takeLatest(actionTypes.OTP_AUTHENTICATION_REQUEST, otpAuthRequestSaga),
@@ -45,5 +60,6 @@ const authSaga = [
     actionTypes.PHONE_NUMBER_AUTHENTICATION_REQUEST,
     phoneNumAuthRequestSaga
   ),
+  takeLatest(actionTypes.SIGN_OUT_REQUEST, signOutSaga),
 ];
 export default authSaga;

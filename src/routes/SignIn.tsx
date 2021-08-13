@@ -55,7 +55,7 @@ const SignIn = (
               label="OTP"
               type="number"
               value={otp}
-              placeholder="Enter OPT"
+              placeholder="Enter OTP"
               onInputChange={(inputVal: string) => {
                 setOTP(inputVal);
               }}
