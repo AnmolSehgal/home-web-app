@@ -21,6 +21,9 @@ const Navbar = ({
             </Link>
           </li>
           <li className="mr-4">
+            <Link to="/products">Products</Link>
+          </li>
+          <li className="mr-4">
             <Link to="/SignIn">SignIn</Link>
           </li>
           {localStorage.getItem("uid") ? (

@@ -22,7 +22,6 @@ function* otpAuthRequestSaga({
   try {
     const userData: any = yield onOTPSubmit(payload.otp);
     localStorage.setItem("uid", userData.user.uid);
-    localStorage.setItem("phoneNumber", userData.user.phoneNumber);
     yield put(otpAuthSuccess());
     yield put(push("/dashboard"));
   } catch (error) {
@@ -48,7 +47,6 @@ function* signOutSaga() {
     yield put(push("/SignIn"));
     console.log("hi");
     localStorage.removeItem("uid");
-    localStorage.removeItem("phoneNumber");
   } catch (err) {
     console.log(err);
   }
