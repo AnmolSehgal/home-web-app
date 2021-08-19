@@ -25,8 +25,7 @@ export interface CardComponentInterface {
 
 export interface FilterComponentInterface {
   listFilter: string[];
-  value: boolean[];
-  handleChange: (index: number) => void;
+  handleChange: (index: string) => void;
 }
 
 export interface TitleComponentInterface {

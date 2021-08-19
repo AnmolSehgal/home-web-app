@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 
 import InputBox from "../components/InputBox";
 import Button from "../components/SubmitButton";
@@ -13,12 +13,13 @@ import {
   phoneNumberAuthRequest,
 } from "../store/actions/signInAction";
 
-const SignIn = (
-  props: ReturnType<typeof mapStateToProps> &
-    ReturnType<typeof mapDispatchToProps>
-) => {
+const SignIn = () => {
   const [otp, setOTP] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const loginSuccess = useSelector((state: StateInterface) => {
+    return state.signIn.loginSuccess;
+  });
+  const dispatch = useDispatch();
 
   return (
     <div className="flex flex-row justify-center">
@@ -28,7 +29,7 @@ const SignIn = (
       <div className="flex flex-col ml-2 py-2">
         <img src={logo} className="h-20 w-20" alt="logo" />
         <div className="py-1.5 border-b border-text mb-3">Welcome Back</div>
-        {!props.loginSuccess ? (
+        {!loginSuccess ? (
           <div>
             <InputBox
               label="Phone number"
@@ -45,7 +46,7 @@ const SignIn = (
               id="signInBtn"
               onBtnClick={() => {
                 console.log("hi");
-                props.phoneNumAuthRequest(phoneNumber);
+                dispatch(phoneNumberAuthRequest(phoneNumber));
               }}
             />
           </div>
@@ -65,7 +66,7 @@ const SignIn = (
               className="rounded-xl text-white bg-primary-400 my-2 w-full"
               id="otpBtn"
               onBtnClick={() => {
-                props.otpAuthRequest(otp);
+                dispatch(otpAuthRequest(otp));
               }}
             />
           </div>
@@ -74,21 +75,5 @@ const SignIn = (
     </div>
   );
 };
-const mapStateToProps = (state: StateInterface) => {
-  return {
-    loginSuccess: state.signIn.loginSuccess,
-  };
-};
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    otpAuthRequest: (otp: string) => {
-      dispatch(otpAuthRequest(otp));
-    },
-    phoneNumAuthRequest: (phoneNumber: string) => {
-      dispatch(phoneNumberAuthRequest(phoneNumber));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;

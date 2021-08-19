@@ -1,16 +1,22 @@
+import { useDispatch } from "react-redux";
+
 import { CardComponentInterface } from "./types";
-import image from "../icons/image1.jpg";
+import imagetest from "../icons/image1.jpg";
+import { addToWishListRequest } from "../store/actions/wishListActons";
+import history from "../store/history";
 
 export const CardComponent = ({
   productID,
+  image,
   brandName,
   productName,
   discount,
   price,
 }: CardComponentInterface) => {
+  const dispatch = useDispatch();
   return (
-    <div className="flex flex-col border items-center border-text-300 w-64 rounded ">
-      <img className=" w-72 h-60" src={image} alt={productName} />
+    <div className="flex flex-col border items-center border-text-300 w-full rounded justify-between">
+      <img src={imagetest} alt={productID} />
       <div>{productName}</div>
       <div className="text-text-700">by {brandName}</div>
       {discount > 0 ? (
@@ -19,9 +25,26 @@ export const CardComponent = ({
           <span className="ml-2 line-through text-text">{price}</span>
         </div>
       ) : (
-        <span>{price}</span>
+        <span>Rs. {price}</span>
       )}
-      <div className="text-primary-400">Add To Cart</div>
+      <div className="flex flex-row my-2">
+        <div className="text-primary-400 border-primary-400 mr-2  px-2 border rounded-3xl">
+          <button
+            onClick={() => {
+              if (localStorage.getItem("uid"))
+                dispatch(addToWishListRequest(productID));
+              else {
+                history.push("/SignIn");
+              }
+            }}
+          >
+            Add to WishList
+          </button>
+        </div>
+        <div className="text-primary-400 border-primary-400  px-2 border rounded-3xl">
+          <button>Add to Cart</button>
+        </div>
+      </div>
     </div>
   );
 };

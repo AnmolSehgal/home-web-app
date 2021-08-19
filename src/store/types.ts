@@ -6,7 +6,9 @@ export interface LoginState {
 }
 
 export interface StateInterface {
+  products: ProductStateInterface;
   signIn: LoginState;
+  wishlist: WishlistStateInterface;
 }
 
 export interface ProductDataInterface {
@@ -29,4 +31,17 @@ export interface ProductDataInterface {
 export interface ProductStateInterface {
   data: ProductDataInterface[];
   dataSuccess: boolean;
+}
+
+export interface WishlistStateInterface {
+  list: WishListObjectInterface[];
+  loadSpinner: boolean;
+}
+export interface WishListObjectInterface {
+  productId: string;
+  productName: string;
+  image: string;
+  price: number;
+  discount: number;
+  stock: number;
 }

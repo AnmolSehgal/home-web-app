@@ -3,15 +3,17 @@ import { FilterComponentInterface } from "./types";
 export const FilterComponent = (props: FilterComponentInterface) => {
   return (
     <ul className="list-none ">
-      {props.listFilter.map((value, index) => {
+      {props.listFilter.map((value) => {
         return (
-          <li className="flex flex-row justify-between px-4">
+          <li
+            key={value}
+            className="flex flex-row justify-between items-center px-4"
+          >
             <input
               type="checkbox"
               className="bg-primary-400"
-              checked={props.value[index]}
               onChange={() => {
-                props.handleChange(index);
+                props.handleChange(value);
               }}
             />
             <span>{value}</span>

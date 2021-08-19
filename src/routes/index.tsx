@@ -7,6 +7,7 @@ import Home from "./Home";
 import Products from "./Products";
 import SignIn from "./SignIn";
 import { RoutesProps } from "./types";
+import WishList from "./Wishlist";
 
 const PrivateRoute = ({ exact, path, component: Component }: RoutesProps) => {
   return (
@@ -52,6 +53,7 @@ const Routes = (): ReactElement => {
       <Route exact path="/About" component={About} />
       <NonPrivateroutes exact={true} path="/SignIn" component={SignIn} />
       <PrivateRoute exact={true} path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact={true} path="/wishlist" component={WishList} />
     </Switch>
   );
 };
