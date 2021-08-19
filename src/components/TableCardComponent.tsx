@@ -1,25 +1,25 @@
-import { useDispatch } from "react-redux";
 import imageTest from "../icons/image1.jpg";
-import { removeWishListItemRequest } from "../store/actions/wishListActons";
 
-import { WishListObjectInterface } from "../store/types";
+import { TableObjectInterface } from "../store/types";
 
 export const TableCardComponent = ({
   productId,
   productName,
   image,
+  addToCart,
   price,
   discount,
+  changeQuantity,
+  quantity,
+  removeItem,
   stock,
-}: WishListObjectInterface) => {
-  const dispatch = useDispatch();
-
+}: TableObjectInterface) => {
   return (
     <tr className="border-b">
       <td className="px-2">
         <div
           onClick={() => {
-            dispatch(removeWishListItemRequest(productId));
+            removeItem();
           }}
         >
           X
@@ -52,18 +52,48 @@ export const TableCardComponent = ({
       </td>
       <td className="px-2">
         <div className=" border border-primary-400  rounded-3xl py-1.5 px-4 w-36">
-          <button className="text-primary sm:text-xs md:text-sm">
+          <button
+            className="text-primary sm:text-xs md:text-sm"
+            onClick={() => {}}
+          >
             View Product
           </button>
         </div>
       </td>
-      <td className="px-2">
-        <div className=" bg-primary-400 rounded-3xl py-1.5 px-4 w-36">
-          <button className="text-white sm:text-xs md:text-sm text-sm">
-            ADD TO CART
-          </button>
-        </div>
-      </td>
+
+      {changeQuantity && quantity ? (
+        <td className="px-2">
+          <div className="flex flex-row border-2 px-4 py-1.5 rounded-3xl items-center ">
+            <input
+              type="number"
+              className=" w-16 outline-none"
+              value={quantity}
+              onChange={() => {
+                changeQuantity(productId, quantity);
+              }}
+            />
+          </div>
+        </td>
+      ) : (
+        ""
+      )}
+
+      {addToCart ? (
+        <td className="px-2">
+          <div className=" bg-primary-400 rounded-3xl py-1.5 px-4 w-36">
+            <button
+              className="text-white sm:text-xs md:text-sm text-sm"
+              onClick={() => {
+                addToCart(productId, 1);
+              }}
+            >
+              ADD TO CART
+            </button>
+          </div>
+        </td>
+      ) : (
+        ""
+      )}
     </tr>
   );
 };

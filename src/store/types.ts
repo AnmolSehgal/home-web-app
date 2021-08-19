@@ -45,3 +45,15 @@ export interface WishListObjectInterface {
   discount: number;
   stock: number;
 }
+export interface TableObjectInterface {
+  productId: string;
+  productName: string;
+  image: string;
+  price: number;
+  discount: number;
+  addToCart?: (productId: string, quantity: number) => void;
+  removeItem: () => void;
+  changeQuantity?: (productId: string, quantity: number) => void;
+  quantity?: number;
+  stock: number;
+}
