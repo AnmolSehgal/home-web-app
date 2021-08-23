@@ -1,14 +1,17 @@
-import Navbar from "./components/navbar";
-import { ReactElement, FC } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Routes from "./routes/Routes";
+import { ConnectedRouter } from "connected-react-router";
+import { ReactElement } from "react";
 
-const App: FC = (): ReactElement => {
+import Navbar from "./routes/Navbar";
+import Routes from "./routes";
+import history from "./store/history";
+// import { useEffect } from "react";
+
+const App = (): ReactElement => {
   return (
-    <Router>
+    <ConnectedRouter history={history}>
       <Navbar />
       <Routes />
-    </Router>
+    </ConnectedRouter>
   );
 };
 export default App;

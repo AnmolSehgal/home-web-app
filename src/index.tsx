@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import firebase from "firebase/app";
+import "firebase/app";
 import { Provider } from "react-redux";
 
 import "./index.css";
@@ -8,7 +9,19 @@ import App from "./App";
 import firebaseConfig from "./services/firebase/firebaseConfig";
 import store from "./store/store";
 
-if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+declare global {
+  interface Window {
+    recaptchaVerifier: any;
+    confirmationResult: any;
+  }
+}
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+
+  firebase.auth().languageCode = "en";
+  console.log(firebase.auth);
+}
 
 ReactDOM.render(
   <React.StrictMode>
