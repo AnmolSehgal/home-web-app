@@ -9,6 +9,7 @@ export interface StateInterface {
   products: ProductStateInterface;
   signIn: LoginState;
   wishlist: WishlistStateInterface;
+  cart: CartStateInterface;
 }
 
 export interface ProductDataInterface {
@@ -56,4 +57,19 @@ export interface TableObjectInterface {
   changeQuantity?: (productId: string, quantity: number) => void;
   quantity?: number;
   stock: number;
+}
+
+export interface CartStateObject {
+  productId: string;
+  productName: string;
+  image: string;
+  price: number;
+  discount: number;
+  stock: number;
+  quantity: number;
+}
+
+export interface CartStateInterface {
+  itemList: CartStateObject[];
+  loadSpinner: boolean;
 }

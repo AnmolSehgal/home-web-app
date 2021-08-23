@@ -17,7 +17,7 @@ export interface ButtonProps {
 export interface CardComponentInterface {
   image: string;
   productName: string;
-  productID: string;
+  productId: string;
   brandName: string;
   discount: number;
   price: number;

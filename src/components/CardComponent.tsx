@@ -4,9 +4,10 @@ import { CardComponentInterface } from "./types";
 import imagetest from "../icons/image1.jpg";
 import { addToWishListRequest } from "../store/actions/wishListActons";
 import history from "../store/history";
+import { addToCartAction } from "../store/actions/cartAction";
 
 export const CardComponent = ({
-  productID,
+  productId,
   image,
   brandName,
   productName,
@@ -16,7 +17,7 @@ export const CardComponent = ({
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col border items-center border-text-300 w-full rounded justify-between">
-      <img src={imagetest} alt={productID} />
+      <img src={imagetest} alt={productId} />
       <div>{productName}</div>
       <div className="text-text-700">by {brandName}</div>
       {discount > 0 ? (
@@ -32,7 +33,7 @@ export const CardComponent = ({
           <button
             onClick={() => {
               if (localStorage.getItem("uid"))
-                dispatch(addToWishListRequest(productID));
+                dispatch(addToWishListRequest(productId));
               else {
                 history.push("/SignIn");
               }
@@ -42,7 +43,13 @@ export const CardComponent = ({
           </button>
         </div>
         <div className="text-primary-400 border-primary-400  px-2 border rounded-3xl">
-          <button>Add to Cart</button>
+          <button
+            onClick={() => {
+              dispatch(addToCartAction(productId, 1));
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

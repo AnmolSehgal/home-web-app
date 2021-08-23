@@ -177,7 +177,7 @@ const Products = () => {
                   <CardComponent
                     image={image}
                     brandName={brandName}
-                    productID={productId}
+                    productId={productId}
                     productName={productName}
                     discount={discount}
                     price={price}

@@ -52,3 +52,43 @@ export async function removeWishListItem(productId: string) {
       wishlist: firebase.firestore.FieldValue.arrayRemove(docRef),
     });
 }
+
+export async function addItemToCart(productId: string, quantity: number) {
+  const db = await firebase.firestore();
+  const ref = await db
+    .collection("users")
+    .doc(localStorage.getItem("uid") as string);
+  ref.collection("cart").doc(productId).set({ productId, quantity });
+}
+
+export async function removeItemFromCart(productId: string) {
+  const db = await firebase.firestore();
+  await db
+    .collection("users")
+    .doc(localStorage.getItem("uid") as string)
+    .collection("cart")
+    .doc(productId)
+    .delete();
+}
+
+export async function fetchCart() {
+  const db = await firebase.firestore();
+
+  const ref = await db
+    .collection("users")
+    .doc(localStorage.getItem("uid") as string);
+  const userRef = await ref.get();
+  if (userRef.exists) {
+    const userData = await ref.collection("cart").get();
+    const data = await Promise.all(
+      await userData.docs.map(async (value) => {
+        const docRef = await db
+          .collection("products")
+          .doc(value.data().productId)
+          .get();
+        return { ...docRef.data(), quantity: value.data().quantity };
+      })
+    );
+    return data;
+  } else return [];
+}

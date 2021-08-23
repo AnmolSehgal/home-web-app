@@ -1,6 +1,7 @@
 import imageTest from "../icons/image1.jpg";
 
 import { TableObjectInterface } from "../store/types";
+import QuantityComponent from "./QuantityComponent";
 
 export const TableCardComponent = ({
   productId,
@@ -50,6 +51,22 @@ export const TableCardComponent = ({
           <div className="text-red-500  ">Sold</div>
         )}
       </td>
+
+      {changeQuantity && quantity ? (
+        <td className="px-2">
+          <QuantityComponent
+            productId={productId}
+            quantity={quantity}
+            stock={stock}
+            changeQuantity={(productId: string, quantity: number) => {
+              changeQuantity(productId, quantity);
+            }}
+          />
+        </td>
+      ) : (
+        <td></td>
+      )}
+
       <td className="px-2">
         <div className=" border border-primary-400  rounded-3xl py-1.5 px-4 w-36">
           <button
@@ -60,23 +77,6 @@ export const TableCardComponent = ({
           </button>
         </div>
       </td>
-
-      {changeQuantity && quantity ? (
-        <td className="px-2">
-          <div className="flex flex-row border-2 px-4 py-1.5 rounded-3xl items-center ">
-            <input
-              type="number"
-              className=" w-16 outline-none"
-              value={quantity}
-              onChange={() => {
-                changeQuantity(productId, quantity);
-              }}
-            />
-          </div>
-        </td>
-      ) : (
-        ""
-      )}
 
       {addToCart ? (
         <td className="px-2">
@@ -92,7 +92,7 @@ export const TableCardComponent = ({
           </div>
         </td>
       ) : (
-        ""
+        <td></td>
       )}
     </tr>
   );

@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import About from "./About";
+import Cart from "./Cart";
 
 import Dashboard from "./Dashboard";
 import Home from "./Home";
@@ -53,6 +54,7 @@ const Routes = (): ReactElement => {
       <Route exact path="/About" component={About} />
       <NonPrivateroutes exact={true} path="/SignIn" component={SignIn} />
       <PrivateRoute exact={true} path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact={true} path="/cart" component={Cart} />
       <PrivateRoute exact={true} path="/wishlist" component={WishList} />
     </Switch>
   );

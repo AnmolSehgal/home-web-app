@@ -15,9 +15,11 @@ export const UserTab = () => {
           <img src={heart} alt="wishlist" className="w-7 h-7 mr-4" />
         </div>
       </Link>
-      <div>
-        <img src={cart} alt="cart" className="w-7 h-7 mr-4" />
-      </div>
+      <Link to="/cart">
+        <div>
+          <img src={cart} alt="cart" className="w-7 h-7 mr-4" />
+        </div>
+      </Link>
     </div>
   );
 };
